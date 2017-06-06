@@ -49,9 +49,9 @@ def Rot(RotationPoint, p1, p2, theta):
     npz = ((c*(u**2 +v**2)-w*(a*u+b*v-u*x-v*y-w*z))*(1-np.cos(theta))+L*z*np.cos(theta)+np.sqrt(L)*(-b*u+a*v-v*x+u*y)*np.sin(theta))/L
     return npx, npy, npz 
 
-  
+c = 0  
 for j in range(500):
-    c = 0 
+    
     theta = np.random.uniform(0.0,np.pi, 6)
     for n in range(len(theta)):
         for i in range(0,18,3): # 18 = number of atoms
@@ -83,7 +83,7 @@ for j in range(500):
         os.system("mv water_temp.xyz w6_copy.xyz")
         print "file overwritten"
     if j%5 == 0 :
-        c += 5
+        c += 1
         print c
     
 #constrants...
