@@ -17,7 +17,7 @@ def get_energy(mol):
 
     return FF.Energy()
 
-def choose_atoms():
+def choose_atoms(): #some kind of random but systematic choices of water molecules
     #for i in range(10):
         random = np.random.randint(2)
         O1 = np.random.randint(6)*3 #random O
@@ -34,6 +34,7 @@ def choose_atoms():
         return O1, H1, H2, O2
 
 #calculate dihedral angle https://math.stackexchange.com/questions/47059/how-do-i-calculate-a-dihedral-angle-given-cartesian-coordinates
+# angle in radians
 def find_angle(n_O1, n_H1, n_H2, n_O2, x, y, z):
 
     O1 = np.array([x[n_O1], y[n_O1], z[n_O1]])
@@ -77,8 +78,8 @@ def set_dihedral(mol, forcefield,x,y,z):
     # constraints.AddTorsionConstraint(1, 2, 3, 4, 180.0) # Degrees
     
     for i in range(2):
-        n_O1, n_H1, n_H2, n_O2 = choose_atoms()
-        angle = find_angle(n_O1, n_H1, n_H2, n_O2 ,x,y,z)
+        n_O1, n_H1, n_H2, n_O2 = choose_atoms() #random oxygens
+        angle = find_angle(n_O1, n_H1, n_H2, n_O2 ,x,y,z) #initial dihedral angle
 
         a = mol.OBMol.GetAtom(n_H1)
         b = mol.OBMol.GetAtom(n_O1)
@@ -89,8 +90,8 @@ def set_dihedral(mol, forcefield,x,y,z):
         anglep = mol.OBMol.GetTorsion(a, b, c, d)
         
 
-        # Define constraint fjernet for "ai" ikke giver mening
-        # constraints.AddTorsionConstraint(a, b, c, d, anglep) # Degrees
+        # Define constraint. fjernet fordi "ai" ikke giver mening
+        # constraints.AddTorsionConstraint(ai, bi, ci, di, anglep) # Degrees
         
         print "rotate"
 
