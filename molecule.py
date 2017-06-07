@@ -7,7 +7,7 @@ global forcefield
 
 
 def get_energy(mol):
-    """ Returns the GAFF energy of the molecule in kcal/mol.
+    """ Returns the MMFF94 energy of the molecule in kcal/mol.
     """
 
 #    global mol
@@ -17,18 +17,6 @@ def get_energy(mol):
 
     return FF.Energy()
 
-"""
-def generate_chain(n):
-    # Generate a n-length carbon chain.
-    
-
-    global mol
-
-    carbon = "C"*n
-    mol = pb.readstring("smi", carbon)
-    mol.addh()
-    mol.make3D()
-"""
 
 def set_dihedral(angles, mol, forcefield):
     """ Set the dihedral angles of the carbon chain
@@ -125,5 +113,4 @@ if __name__ == '__main__':
     print get_energy()
 
     # save_molecule('carbon_man3.xyz')
-
 
