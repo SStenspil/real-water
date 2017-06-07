@@ -28,7 +28,7 @@ def choose_atoms(): #some kind of random but systematic choices of water molecul
             H1 = O1+2
             H2 = O1+1
         O2 = np.random.randint(6)*3
-        if O1 == O2:
+        while O1 == O2:
             O2 = np.random.randint(6)*3
         
         return O1, H1, H2, O2
