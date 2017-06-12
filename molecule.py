@@ -311,14 +311,14 @@ def rotation_hydrogen(n_gen,T,R,c,energy_list):
             mol_old = pb.readfile("xyz","water_HE_temp.xyz").next()
         
         no_atom = np.random.randint(18)
-        while no_atom % 3 == 0:
+        while no_atom % 3 == 0: # make sure it doesn't rotate around oxygen
             no_atom = np.random.randint(18)
 
         #read file 
         lines_after_2 = w.readlines()[2:]
         # defines forcefield MMFF94
         forcefield = ob.OBForceField.FindForceField("MMFF94")
-        energy_old = m.get_energy(mol_old)
+        energy_old = get_energy(mol_old)
         
         energy_list[j] += energy_old
         
@@ -333,15 +333,15 @@ def rotation_hydrogen(n_gen,T,R,c,energy_list):
             x.append(float(line[1]))
             y.append(float(line[2]))
             z.append(float(line[3]))
-            
+       
         x,y,z = perturb(x,y,z,atom,no_atom)
         #write new coordinates to new temporary file
         xyz = open('water_temp.xyz','w')
 
         mol_new = pb.readfile("xyz","water_temp.xyz").next()
         #calculate MMFF94 force field energies
-        energy_old = m.get_energy(mol_old)
-        energy_new = m.get_energy(mol_new)
+        energy_old = get_energy(mol_old)
+        energy_new = get_energy(mol_new)
         
         #overwrite first file if the energy is lower
         if energy_new < energy_old:

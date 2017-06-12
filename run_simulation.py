@@ -6,7 +6,7 @@ import os, sys
 import molecule as m
 
 
-b = open("energy_all.csv", 'w') #match with name of simulation
+b = open("energy_hydrogen.csv", 'w') #match with name of simulation
 T = 300.0
 R = 0.00198588 #kcal/mol
 c = 0
@@ -33,8 +33,8 @@ for i in range(simulations):
     #Choose one function to run:
     #energy_list = m.hastings_all(n_gen,T,R,c,energy_list)
     #energy_list = m.hastings_hydrogen(n_gen,T,R,c,energy_list)
-    energy_list = m.rotation_all(n_gen,T,R,c,energy_list)
-    #energy_list = m.rotation_hydrogen(n_gen,T,R,c,energy_list)
+    #energy_list = m.rotation_all(n_gen,T,R,c,energy_list)
+    energy_list = m.rotation_hydrogen(n_gen,T,R,c,energy_list)
     
     #print energy_list[0]
     
